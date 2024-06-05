@@ -47,12 +47,13 @@ class List_Books extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return InkWell(
                                 onTap: ()async{
-                                  await launchUrl("${Linkapp.Open_Books}/${controller.data[index]["id"]}" as Uri);
+
+                                 // await launchUrl("${Linkapp.Open_Books}/${controller.data[index]["id"]}" as Uri);
                                 },
                                 child: Card_one_book(
                                     name_book:
                                         "${controller.data[index]["name"]}",
-                                    src: "${controller.data[index]["src_bdf"]}"),
+                                    src: "${controller.data[index]["id"]}"),
                               );
                             })
                         : Center(

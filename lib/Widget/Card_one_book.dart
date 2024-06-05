@@ -13,7 +13,8 @@ class Card_one_book extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        await launchUrl( Uri.parse('${Linkapp.server}/$src'));
+        print("${Linkapp.Open_Books}/${src}");
+        await launchUrl( Uri.parse("${Linkapp.Open_Books}/${src}"));
       },
       child: Container(
         height: 90,
@@ -47,7 +48,7 @@ class Card_one_book extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'أضغط لفتح الكتاب',
+                  'أضغط لتنزيل الكتاب',
                   style: const TextStyle(
                     decorationColor: Colors.red,
                     decoration: TextDecoration.underline,

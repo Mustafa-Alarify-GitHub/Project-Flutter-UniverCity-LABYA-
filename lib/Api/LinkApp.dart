@@ -8,6 +8,6 @@ class Linkapp{
    static const String Get_Register ="$server/Get-Register";
    static const String Get_Status_Register ="$server/Get-Status-Register-student";
    static const String Get_All_news ="$server/Get-All-News";
-   static const String Open_Books ="$server/pdf"; // parms ID
+   static const String Open_Books ="$server/Open-books"; // parms ID
 
 }
