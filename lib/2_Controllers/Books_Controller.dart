@@ -8,10 +8,13 @@ class Books_Controller extends GetxController {
   List data = [];
 
   Get_All_data(id_cat) async {
+    print(id_cat);
+    print(id_cat);
+    print(id_cat);
+    print(id_cat);
     lodding = true;
     data.clear();
-    var response =
-        await Api.getData("${Linkapp.Get_One_Books}/${id_cat}");
+    var response = await Api.getData("${Linkapp.Get_One_Books}/${id_cat}");
     print(response);
     if (response["status"] == 200) {
       data.addAll(response["data"]);
@@ -20,5 +23,4 @@ class Books_Controller extends GetxController {
 
     update();
   }
-
 }

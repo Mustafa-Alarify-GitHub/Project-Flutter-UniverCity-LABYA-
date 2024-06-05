@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hine/2_Controllers/Books_Controller.dart';
+import 'package:hine/Api/LinkApp.dart';
 import 'package:hine/Const/AppColors.dart';
 import 'package:hine/Widget/Card_one_book.dart';
 import 'package:hine/Widget/Lodding.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class List_Books extends StatelessWidget {
   final String txt_Apper;
@@ -43,10 +45,15 @@ class List_Books extends StatelessWidget {
                         ? ListView.builder(
                             itemCount: controller.data.length,
                             itemBuilder: (context, index) {
-                              return Card_one_book(
-                                  name_book:
-                                      "${controller.data[index]["name"]}",
-                                  src: "${controller.data[index]["src_bdf"]}");
+                              return InkWell(
+                                onTap: ()async{
+                                  await launchUrl("${Linkapp.Open_Books}/${controller.data[index]["id"]}" as Uri);
+                                },
+                                child: Card_one_book(
+                                    name_book:
+                                        "${controller.data[index]["name"]}",
+                                    src: "${controller.data[index]["src_bdf"]}"),
+                              );
                             })
                         : Center(
                             child: Text(

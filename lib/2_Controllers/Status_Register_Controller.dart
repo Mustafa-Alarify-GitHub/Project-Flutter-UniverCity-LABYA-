@@ -1,3 +1,4 @@
+
 import 'package:get/get.dart';
 import 'package:hine/Api/Api.dart';
 import 'package:hine/Api/LinkApp.dart';
@@ -19,9 +20,10 @@ class Status_Register_Controller extends GetxController {
     update();
   }
 
+
   @override
   void onInit() {
-    // TODO: implement onInit
     Get_status();
   }
+
 }

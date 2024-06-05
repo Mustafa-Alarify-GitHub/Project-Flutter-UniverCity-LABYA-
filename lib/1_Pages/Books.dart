@@ -4,7 +4,6 @@ import 'package:hine/1_Pages/List_Books.dart';
 import 'package:hine/2_Controllers/Cateogries_Controllers.dart';
 import 'package:hine/Const/AppColors.dart';
 import 'package:hine/Widget/Card_List_Books.dart';
-import 'package:hine/Widget/Card_Cateogry.dart';
 import 'package:hine/Widget/Lodding.dart';
 
 class Books extends StatelessWidget {

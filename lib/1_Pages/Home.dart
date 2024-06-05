@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hine/2_Controllers/Home_Controllers.dart';
+import 'package:hine/2_Controllers/News_Controller.dart';
 import 'package:hine/Widget/Card_Btn.dart';
 import 'package:hine/Const/AppColors.dart';
+import 'package:hine/Widget/Card_News.dart';
 import 'package:hine/Widget/Drawer.dart';
+import 'package:hine/Widget/Lodding.dart';
 
 class Home extends StatelessWidget {
   Home_Controllers _home_controllers = Get.put(Home_Controllers());
+  News_Controller _news_Controller = Get.put(News_Controller());
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +51,21 @@ class Home extends StatelessWidget {
                                 }),
                           )
                         : Expanded(
-                            child: Container(
-                              child: Text("News"),
-                            ),
+                            child: _news_Controller.lodding
+                                ? Lodding()
+                                : Container(
+                                    width: double.infinity,
+                                    color: Colors.black38,
+                                    child: ListView.builder(
+                                      itemCount: _news_Controller.data.length,
+                                        itemBuilder: (context, index) {
+                                      return Card_News(
+                                          txt: "${_news_Controller.data[index]["body"]}",
+                                          date: "${_news_Controller.data[index]["created_at"]}",
+                                          img: "${_news_Controller.data[index]["img"]}"
+                                      );
+                                    }),
+                                  ),
                           ),
                     Container(
                       width: double.infinity,
@@ -58,15 +74,15 @@ class Home extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  _home_controllers.inde_activ_page = 1;
-                                  _home_controllers.update();
-                                },
-                                child: Icon(
+                          InkWell(
+                            onTap: () {
+                              _home_controllers.inde_activ_page = 1;
+                              _home_controllers.update();
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
                                   Icons.home_work_outlined,
                                   size: _home_controllers.inde_activ_page == 1
                                       ? 40
@@ -75,31 +91,32 @@ class Home extends StatelessWidget {
                                       ? AppColors.main_Colors
                                       : Colors.black,
                                 ),
-                              ),
-                              Text(
-                                "ألاخبار",
-                                style: TextStyle(
-                                  fontFamily: "Cairo",
-                                  fontWeight:
-                                      _home_controllers.inde_activ_page == 1
-                                          ? FontWeight.bold
-                                          : FontWeight.normal,
-                                  color: _home_controllers.inde_activ_page == 1
-                                      ? AppColors.main_Colors
-                                      : Colors.black,
-                                ),
-                              )
-                            ],
+                                Text(
+                                  "ألاخبار",
+                                  style: TextStyle(
+                                    fontFamily: "Cairo",
+                                    fontWeight:
+                                        _home_controllers.inde_activ_page == 1
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                    color:
+                                        _home_controllers.inde_activ_page == 1
+                                            ? AppColors.main_Colors
+                                            : Colors.black,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  _home_controllers.inde_activ_page = 0;
-                                  _home_controllers.update();
-                                },
-                                child: Icon(
+                          InkWell(
+                            onTap: () {
+                              _home_controllers.inde_activ_page = 0;
+                              _home_controllers.update();
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
                                   Icons.home_outlined,
                                   size: _home_controllers.inde_activ_page == 0
                                       ? 40
@@ -108,21 +125,22 @@ class Home extends StatelessWidget {
                                       ? AppColors.main_Colors
                                       : Colors.black,
                                 ),
-                              ),
-                              Text(
-                                "ألرئيسيه",
-                                style: TextStyle(
-                                  fontFamily: "Cairo",
-                                  fontWeight:
-                                      _home_controllers.inde_activ_page == 0
-                                          ? FontWeight.bold
-                                          : FontWeight.normal,
-                                  color: _home_controllers.inde_activ_page == 0
-                                      ? AppColors.main_Colors
-                                      : Colors.black,
-                                ),
-                              )
-                            ],
+                                Text(
+                                  "ألرئيسيه",
+                                  style: TextStyle(
+                                    fontFamily: "Cairo",
+                                    fontWeight:
+                                        _home_controllers.inde_activ_page == 0
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                    color:
+                                        _home_controllers.inde_activ_page == 0
+                                            ? AppColors.main_Colors
+                                            : Colors.black,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),

@@ -7,5 +7,7 @@ class Linkapp{
    static const String Regster_Student ="$server/Regster-student";
    static const String Get_Register ="$server/Get-Register";
    static const String Get_Status_Register ="$server/Get-Status-Register-student";
+   static const String Get_All_news ="$server/Get-All-News";
+   static const String Open_Books ="$server/pdf"; // parms ID
 
 }

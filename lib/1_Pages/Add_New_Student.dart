@@ -12,7 +12,6 @@ class Add_New_Student extends StatefulWidget {
 class _Add_New_StudentState extends State<Add_New_Student> {
   Add_New_Student_Controller controller = Get.put(Add_New_Student_Controller());
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -363,68 +362,205 @@ class _Add_New_StudentState extends State<Add_New_Student> {
             height: 20,
           ),
           Container(
-            child: GridView(
+              child: GetBuilder<Add_New_Student_Controller>(
+            builder: (con) => GridView(
               shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, crossAxisSpacing: 5, mainAxisSpacing: 5),
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    color: Colors.grey[400],
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "صوره شهاده ",
-                          style: TextStyle(fontSize: 20, fontFamily: "Cairo"),
+                controller.image != null
+                    ? Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Image.file(controller.image!),
+                          Positioned(
+                              bottom: 0,
+                              right: 10,
+                              child: IconButton(
+                                  onPressed: () {
+                                    controller.image = null;
+                                    controller.update();
+                                  },
+                                  tooltip: "ازاله الصوره",
+                                  icon: Icon(
+                                    Icons.delete,
+                                    size: 30,
+                                    color: Colors.red,
+                                  )))
+                        ],
+                      )
+                    : InkWell(
+                        onTap: () {
+                          Get.defaultDialog(
+                              title: "صوره شهاده ألثنويه",
+                              backgroundColor: Colors.white,
+                              content: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      controller.getImageCa(false);
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.camera_alt,
+                                          size: 50,
+                                          color: AppColors.main_Colors,
+                                        ),
+                                        Text(
+                                          "ألكاميره",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      controller.getImage(false);
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.image,
+                                          size: 50,
+                                          color: AppColors.main_Colors,
+                                        ),
+                                        Text(
+                                          "ألاستديوه",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ));
+                        },
+                        child: Container(
+                          color: Colors.grey[400],
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "صوره شهاده ",
+                                style: TextStyle(
+                                    fontSize: 20, fontFamily: "Cairo"),
+                              ),
+                              Text(
+                                " ألثنويه ",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontFamily: "Cairo",
+                                    color: AppColors.main_Colors),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Icon(Icons.add, size: 60)
+                            ],
+                          ),
                         ),
-                        Text(
-                          " ألثنويه ",
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontFamily: "Cairo",
-                              color: AppColors.main_Colors),
+                      ),
+                controller.image_party != null
+                    ? Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.file(controller.image_party!),
+                    Positioned(
+                        bottom: 0,
+                        right: 10,
+                        child: IconButton(
+                            onPressed: () {
+                              controller.image_party = null;
+                              controller.update();
+                            },
+                            tooltip: "ازاله الصوره",
+                            icon: Icon(
+                              Icons.delete,
+                              size: 30,
+                              color: Colors.red,
+                            )))
+                  ],
+                )
+                    : InkWell(
+                        onTap: () {
+                          Get.defaultDialog(
+                              title: "صوره شهاده الميلاد",
+                              backgroundColor: Colors.white,
+                              content: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      controller.getImageCa(true);
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.camera_alt,
+                                          size: 50,
+                                          color: AppColors.main_Colors,
+                                        ),
+                                        Text(
+                                          "ألكاميره",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      controller.getImage(true);
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.image,
+                                          size: 50,
+                                          color: AppColors.main_Colors,
+                                        ),
+                                        Text(
+                                          "ألاستديوه",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ));
+                        },
+                        child: Container(
+                          color: Colors.grey[400],
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "صوره شهاده ",
+                                style: TextStyle(
+                                    fontSize: 20, fontFamily: "Cairo"),
+                              ),
+                              Text(
+                                " ألميلاد ",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontFamily: "Cairo",
+                                    color: AppColors.main_Colors),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Icon(Icons.add, size: 60)
+                            ],
+                          ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Icon(Icons.add, size: 60)
-                      ],
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    color: Colors.grey[400],
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "صوره شهاده ",
-                          style: TextStyle(fontSize: 20, fontFamily: "Cairo"),
-                        ),
-                        Text(
-                          " ألميلاد ",
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontFamily: "Cairo",
-                              color: AppColors.main_Colors),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Icon(Icons.add, size: 60)
-                      ],
-                    ),
-                  ),
-                ),
+                      ),
               ],
             ),
-          ),
+          )),
           InkWell(
-            onTap: (){
+            onTap: () {
               controller.Send_Data();
             },
             child: Container(
@@ -432,12 +568,15 @@ class _Add_New_StudentState extends State<Add_New_Student> {
               width: double.infinity,
               height: 60,
               decoration: BoxDecoration(
-                color: AppColors.main_Colors,
-                borderRadius: BorderRadius.circular(20)
+                  color: AppColors.main_Colors,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Center(
+                child: Text(
+                  "أرسال الطلب",
+                  style: TextStyle(
+                      fontFamily: "Cairo", fontSize: 20, color: Colors.white),
+                ),
               ),
-              child: Center(child: Text("أرسال الطلب",style: TextStyle(
-                  fontFamily: "Cairo",
-                  fontSize: 20,color: Colors.white),),),
             ),
           )
         ],

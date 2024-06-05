@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hine/1_Pages/Add_New_Student.dart';
@@ -26,15 +27,18 @@ class Home_Controllers extends GetxController {
           int day = data.day;
 
           if ("${day}" != "$z") {
-            print("CLEAR");
-            shared.setData(shared.key_Status, "");
+            // shared.setData(shared.key_Status, "");
           }
 
           if (status == "wait") {
+            print("11111111111111111111111111111");
             Get.to(() => Status_Register(), transition: Transition.size);
           } else {
+            print("0000000000000000000000000000");
+
             Get.to(() => Add_New_Student(), transition: Transition.size);
           }
+
         } else {
           Get.dialog(Center(
             child: Container(
@@ -47,7 +51,7 @@ class Home_Controllers extends GetxController {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "عذر اتسجيل مغلق حاليآ !",
+                    "عذر التسجيل مغلق حاليآ !",
                     style: TextStyle(
                         fontSize: 25,
                         color: Colors.black,
@@ -58,6 +62,7 @@ class Home_Controllers extends GetxController {
                   ),
                   MaterialButton(
                       onPressed: () {
+                        shared.Clear_Cash();
                         Get.back();
                       },
                       child: Container(
@@ -134,4 +139,6 @@ class Home_Controllers extends GetxController {
       },
     },
   ];
+
+
 }
