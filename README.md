@@ -1,7 +1,7 @@
 This is Mobile app
 
 
-<img src="11.jpg" alt="" width="400px">
+<img src="11.jpg" alt="" width="700px">
 
 Web
 <a href="https://github.com/Mustafa-Alarify-GitHub/Project-Laravel-UniverCity-LABYA">repo web and Api</a>
